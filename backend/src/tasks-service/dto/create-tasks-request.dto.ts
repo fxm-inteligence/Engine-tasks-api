@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsBoolean, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsDateString, IsInt, IsOptional, IsString } from "class-validator";
 
 export class CreateTasksRequestDto {
   @ApiProperty({ type: String })
@@ -10,4 +10,24 @@ export class CreateTasksRequestDto {
   @IsOptional()
   @IsBoolean()
   done?: boolean;
+
+  @ApiPropertyOptional({ type: String })
+  @IsOptional()
+  @IsString()
+  status?: string;
+
+  @ApiPropertyOptional({ type: Number })
+  @IsOptional()
+  @IsInt()
+  priority?: number;
+
+  @ApiPropertyOptional({ type: String, format: "date-time" })
+  @IsOptional()
+  @IsDateString()
+  dueAt?: string;
+
+  @ApiPropertyOptional({ type: String, format: "date-time" })
+  @IsOptional()
+  @IsDateString()
+  createdAt?: string;
 }

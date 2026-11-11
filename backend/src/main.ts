@@ -8,6 +8,9 @@ import helmet from "helmet";
 import { AllExceptionsFilter } from "./all-exceptions.filter";
 import { AppModule } from "./app.module";
 import { SanitizePipe } from "./sanitize.pipe";
+import { runWithRequest } from "./request-context";
+import { METRICS_ROUTE, metricsHandler, metricsMiddleware } from "./metrics";
+import { requestLogging } from "./request-log";
 
 // Nest's `ws` adapter routes an incoming message by its `event` field; the
 // protocol every other Adapter and the generated frontend speak is
@@ -34,13 +37,17 @@ async function bootstrap() {
   // package this catalogue never installs; `ws` matches the raw-JSON-over-`ws`
   // protocol every other Adapter's own WebSocket transport already speaks.
   app.useWebSocketAdapter(new RouteWsAdapter(app));
+  app.use(requestLogging);
+  app.use(metricsMiddleware);
   app.use(helmet());
+  app.use((req: any, _res: unknown, next: () => void) => runWithRequest(req.headers, req.method, next));
   app.enableCors({ origin: process.env.CORS_ORIGIN?.split(",") ?? false, credentials: true, exposedHeaders: ["X-Total-Count"] });
   app.useGlobalPipes(new SanitizePipe(), new ValidationPipe({ whitelist: true, transform: true }));
   app.useGlobalFilters(new AllExceptionsFilter(app.get(HttpAdapterHost).httpAdapter));
   app.getHttpAdapter().get("/health", (_req: unknown, res: { json(body: unknown): void }) =>
     res.json({ status: "ok" }),
   );
+  app.getHttpAdapter().get(METRICS_ROUTE, metricsHandler);
 
   const swaggerConfig = new DocumentBuilder().setTitle("Backend API").setVersion("1.0.0").build();
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);

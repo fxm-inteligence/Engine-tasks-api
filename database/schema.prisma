@@ -13,4 +13,33 @@ model Task {
   id String @id @default(uuid()) @db.Uuid
   title String
   done Boolean?
+  status String? @default("todo")
+  priority Int? @default(3)
+  dueAt DateTime?
+  createdAt DateTime? @default(now())
+}
+
+model TaskStatusLog {
+  id String @id @default(uuid()) @db.Uuid
+  recordId String
+  fromStatus String?
+  toStatus String
+  changedAt Float
+}
+
+model TaskAuditLog {
+  id String @id @default(uuid()) @db.Uuid
+  recordId String
+  action String
+  actor String?
+  changes String? @db.Text
+  changedAt Float
+}
+
+model TaskIdempotencyKey {
+  id String @id @default(uuid()) @db.Uuid
+  requestKey String @unique
+  recordId String
+  createdAt Float
+  requestHash String?
 }

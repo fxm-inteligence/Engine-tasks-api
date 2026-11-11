@@ -8,6 +8,7 @@ export const hooks: Hooks<TasksService> = {
     // getTasks(...) { /* throw to refuse the call */ },
     // createTasks(...) { /* throw to refuse the call */ },
     // updateTasks(...) { /* throw to refuse the call */ },
+    // patchTasks(...) { /* throw to refuse the call */ },
     // deleteTasks(...) { /* throw to refuse the call */ },
   },
   after: {
@@ -15,6 +16,7 @@ export const hooks: Hooks<TasksService> = {
     // getTasks(result, ...) { return result; },
     // createTasks(result, ...) { return result; },
     // updateTasks(result, ...) { return result; },
+    // patchTasks(result, ...) { return result; },
     // deleteTasks(result, ...) { return result; },
   },
 };

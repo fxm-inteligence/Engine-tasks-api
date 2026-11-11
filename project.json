@@ -72,12 +72,239 @@
                 "type": "Boolean",
                 "value": false,
                 "defaultValue": false
+              },
+              {
+                "name": "rules",
+                "type": "String",
+                "value": "title required\ntitle minLength 3\ntitle maxLength 120\npriority min 1\npriority max 5"
+              },
+              {
+                "name": "queries",
+                "type": "String",
+                "value": "open: status=todo, sort priority\ndoing: status=doing\ndone: status=done, sort -createdAt, limit 20"
               }
             ],
             "metadata": {
               "version": "0.0.0",
               "createdAt": "2026-10-21T13:42:25.381Z",
               "updatedAt": "2026-10-21T13:42:25.381Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "de91812e-df3c-4f2c-a827-a1361bddbe1f",
+            "category": "Business Logic",
+            "type": "Status Flow",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "Task Steps"
+              },
+              {
+                "name": "disabled",
+                "type": "Boolean",
+                "value": false,
+                "defaultValue": false
+              },
+              {
+                "name": "entity",
+                "type": "Reference",
+                "value": "81d198e3-cf2c-4953-b710-d04cada299d1"
+              },
+              {
+                "name": "statusField",
+                "type": "String",
+                "value": "status"
+              },
+              {
+                "name": "statuses",
+                "type": "Array",
+                "value": [
+                  "todo",
+                  "doing",
+                  "done"
+                ]
+              },
+              {
+                "name": "transitions",
+                "type": "String",
+                "value": "todo -> doing, done\ndoing -> todo, done"
+              },
+              {
+                "name": "finalStatuses",
+                "type": "Array",
+                "value": [
+                  "done"
+                ]
+              },
+              {
+                "name": "conditions",
+                "type": "String"
+              },
+              {
+                "name": "message",
+                "type": "String",
+                "value": "A task cannot move from {from} to {to}",
+                "defaultValue": "A booking cannot change from {from} to {to}"
+              },
+              {
+                "name": "conditionMessage",
+                "type": "String",
+                "value": "The change from {from} to {to} needs {condition}",
+                "defaultValue": "The change from {from} to {to} needs {condition}"
+              },
+              {
+                "name": "roles",
+                "type": "String"
+              },
+              {
+                "name": "roleMessage",
+                "type": "String",
+                "value": "The change from {from} to {to} needs the role {roles}",
+                "defaultValue": "The change from {from} to {to} needs the role {roles}"
+              },
+              {
+                "name": "timers",
+                "type": "String"
+              },
+              {
+                "name": "history",
+                "type": "Boolean",
+                "value": true,
+                "defaultValue": false
+              },
+              {
+                "name": "translations",
+                "type": "Object"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.966Z",
+              "updatedAt": "2026-11-11T13:51:09.966Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "93b7a60a-b8d6-4d98-9dd6-226bd39cff18",
+            "category": "Business Logic",
+            "type": "Audit",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "Task Trail"
+              },
+              {
+                "name": "disabled",
+                "type": "Boolean",
+                "value": false,
+                "defaultValue": false
+              },
+              {
+                "name": "entity",
+                "type": "Reference",
+                "value": "81d198e3-cf2c-4953-b710-d04cada299d1"
+              },
+              {
+                "name": "exclude",
+                "type": "Array"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.966Z",
+              "updatedAt": "2026-11-11T13:51:09.966Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "44ab3810-87bc-4ae1-960f-7dbe5a9e2c97",
+            "category": "Business Logic",
+            "type": "Idempotency",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "Task Once"
+              },
+              {
+                "name": "disabled",
+                "type": "Boolean",
+                "value": false,
+                "defaultValue": false
+              },
+              {
+                "name": "entity",
+                "type": "Reference",
+                "value": "81d198e3-cf2c-4953-b710-d04cada299d1"
+              },
+              {
+                "name": "hours",
+                "type": "Number",
+                "value": 24,
+                "defaultValue": 24
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.966Z",
+              "updatedAt": "2026-11-11T13:51:09.966Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "aa42a1c7-91ab-44e1-9ca9-c8b191489fd4",
+            "category": "API",
+            "type": "Logging",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "Logging"
+              },
+              {
+                "name": "level",
+                "type": "Enum",
+                "value": "info",
+                "defaultValue": "info"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.966Z",
+              "updatedAt": "2026-11-11T13:51:09.966Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "de016dbd-1e1f-4c1f-aeab-ba3655ad2792",
+            "category": "API",
+            "type": "Metrics",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "Metrics"
+              },
+              {
+                "name": "route",
+                "type": "String",
+                "value": "/metrics",
+                "defaultValue": "/metrics"
+              },
+              {
+                "name": "tracing",
+                "type": "Boolean",
+                "value": false,
+                "defaultValue": false
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.966Z",
+              "updatedAt": "2026-11-11T13:51:09.966Z",
               "tags": []
             }
           }
@@ -111,6 +338,26 @@
           "019f8c80-2580-44ee-bfbb-777332626196": {
             "x": 0,
             "y": 0
+          },
+          "de91812e-df3c-4f2c-a827-a1361bddbe1f": {
+            "x": 300,
+            "y": 400
+          },
+          "93b7a60a-b8d6-4d98-9dd6-226bd39cff18": {
+            "x": 300,
+            "y": 550
+          },
+          "44ab3810-87bc-4ae1-960f-7dbe5a9e2c97": {
+            "x": 300,
+            "y": 700
+          },
+          "aa42a1c7-91ab-44e1-9ca9-c8b191489fd4": {
+            "x": 900,
+            "y": 600
+          },
+          "de016dbd-1e1f-4c1f-aeab-ba3655ad2792": {
+            "x": 900,
+            "y": 800
           }
         },
         "hierarchy": {},
@@ -384,6 +631,285 @@
               "updatedAt": "2026-10-21T13:42:25.381Z",
               "tags": []
             }
+          },
+          {
+            "id": "f8b2ca7a-6f83-42e3-b51f-29caf5aec7e2",
+            "category": "Entity",
+            "type": "Field",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "status"
+              },
+              {
+                "name": "type",
+                "type": "Enum",
+                "value": "String"
+              },
+              {
+                "name": "required",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "unique",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "defaultValue",
+                "type": "String",
+                "value": "todo"
+              },
+              {
+                "name": "autoIncrement",
+                "type": "Boolean"
+              },
+              {
+                "name": "length",
+                "type": "Number"
+              },
+              {
+                "name": "precision",
+                "type": "Number"
+              },
+              {
+                "name": "scale",
+                "type": "Number"
+              },
+              {
+                "name": "dimensions",
+                "type": "Number"
+              },
+              {
+                "name": "enumValues",
+                "type": "Array"
+              },
+              {
+                "name": "arrayElementType",
+                "type": "Enum"
+              },
+              {
+                "name": "description",
+                "type": "String"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.962Z",
+              "updatedAt": "2026-11-11T13:51:09.962Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "433f8d2a-4b2f-4d5a-9844-b7234570826c",
+            "category": "Entity",
+            "type": "Field",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "priority"
+              },
+              {
+                "name": "type",
+                "type": "Enum",
+                "value": "Integer"
+              },
+              {
+                "name": "required",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "unique",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "defaultValue",
+                "type": "String",
+                "value": "3"
+              },
+              {
+                "name": "autoIncrement",
+                "type": "Boolean"
+              },
+              {
+                "name": "length",
+                "type": "Number"
+              },
+              {
+                "name": "precision",
+                "type": "Number"
+              },
+              {
+                "name": "scale",
+                "type": "Number"
+              },
+              {
+                "name": "dimensions",
+                "type": "Number"
+              },
+              {
+                "name": "enumValues",
+                "type": "Array"
+              },
+              {
+                "name": "arrayElementType",
+                "type": "Enum"
+              },
+              {
+                "name": "description",
+                "type": "String"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.965Z",
+              "updatedAt": "2026-11-11T13:51:09.965Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "f9f252bd-09bc-4888-9416-eb3ca18badfc",
+            "category": "Entity",
+            "type": "Field",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "dueAt"
+              },
+              {
+                "name": "type",
+                "type": "Enum",
+                "value": "DateTime"
+              },
+              {
+                "name": "required",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "unique",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "defaultValue",
+                "type": "String"
+              },
+              {
+                "name": "autoIncrement",
+                "type": "Boolean"
+              },
+              {
+                "name": "length",
+                "type": "Number"
+              },
+              {
+                "name": "precision",
+                "type": "Number"
+              },
+              {
+                "name": "scale",
+                "type": "Number"
+              },
+              {
+                "name": "dimensions",
+                "type": "Number"
+              },
+              {
+                "name": "enumValues",
+                "type": "Array"
+              },
+              {
+                "name": "arrayElementType",
+                "type": "Enum"
+              },
+              {
+                "name": "description",
+                "type": "String"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.965Z",
+              "updatedAt": "2026-11-11T13:51:09.965Z",
+              "tags": []
+            }
+          },
+          {
+            "id": "19db6861-b491-4124-ad6f-e9ce8c567aff",
+            "category": "Entity",
+            "type": "Field",
+            "properties": [
+              {
+                "name": "name",
+                "type": "String",
+                "value": "createdAt"
+              },
+              {
+                "name": "type",
+                "type": "Enum",
+                "value": "DateTime"
+              },
+              {
+                "name": "required",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "unique",
+                "type": "Boolean",
+                "value": false
+              },
+              {
+                "name": "defaultValue",
+                "type": "String",
+                "value": "now"
+              },
+              {
+                "name": "autoIncrement",
+                "type": "Boolean"
+              },
+              {
+                "name": "length",
+                "type": "Number"
+              },
+              {
+                "name": "precision",
+                "type": "Number"
+              },
+              {
+                "name": "scale",
+                "type": "Number"
+              },
+              {
+                "name": "dimensions",
+                "type": "Number"
+              },
+              {
+                "name": "enumValues",
+                "type": "Array"
+              },
+              {
+                "name": "arrayElementType",
+                "type": "Enum"
+              },
+              {
+                "name": "description",
+                "type": "String"
+              }
+            ],
+            "metadata": {
+              "version": "0.0.0",
+              "createdAt": "2026-11-11T13:51:09.965Z",
+              "updatedAt": "2026-11-11T13:51:09.965Z",
+              "tags": []
+            }
           }
         ],
         "connections": [],
@@ -408,6 +934,22 @@
           "96049103-be76-4df6-b26d-54e01a727d51": {
             "x": 600,
             "y": 300
+          },
+          "f8b2ca7a-6f83-42e3-b51f-29caf5aec7e2": {
+            "x": 600,
+            "y": 2139.825688782468
+          },
+          "433f8d2a-4b2f-4d5a-9844-b7234570826c": {
+            "x": 600,
+            "y": 2124.9057632254767
+          },
+          "f9f252bd-09bc-4888-9416-eb3ca18badfc": {
+            "x": 600,
+            "y": 2054.7616715603945
+          },
+          "19db6861-b491-4124-ad6f-e9ce8c567aff": {
+            "x": 600,
+            "y": 2101.596480234068
           }
         },
         "hierarchy": {
@@ -417,7 +959,11 @@
           "81d198e3-cf2c-4953-b710-d04cada299d1": [
             "f4963e78-9f59-4ae0-adf8-2f1727e43f57",
             "e99b95ea-cc06-4dd6-93f0-fed055b2256d",
-            "96049103-be76-4df6-b26d-54e01a727d51"
+            "96049103-be76-4df6-b26d-54e01a727d51",
+            "f8b2ca7a-6f83-42e3-b51f-29caf5aec7e2",
+            "433f8d2a-4b2f-4d5a-9844-b7234570826c",
+            "f9f252bd-09bc-4888-9416-eb3ca18badfc",
+            "19db6861-b491-4124-ad6f-e9ce8c567aff"
           ]
         },
         "metadata": {
